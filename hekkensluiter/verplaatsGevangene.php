@@ -13,7 +13,7 @@ $gevangeneFromID->setFetchMode(PDO::FETCH_BOTH);
 if(isset($_POST['gevangeneid'])){
     $gevangene = $gevangene->updateCell($_POST['gevangeneid'],$_POST['naarCell']);
 
-    $reden = $_POST['reden'];
+    $reden = 'niewe cell';
     $medewerkerId = $_SESSION['gebruiker']['id'];
     $gevangeneId = $_POST['gevangeneid'];
     $actie = 'Verplaatsen';
@@ -100,14 +100,6 @@ foreach($Allgevangene as $row){
                         </td>
                         <td>
                                 <input id="appt-time" type="time" name="time" value="'. date("h:i") .'" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            reden:
-                        </td>
-                        <td>
-                            <textarea id="reden" name="reden" rows="8" style="width: 100%;"></textarea>
                         </td>
                     </tr>
                     <tr>

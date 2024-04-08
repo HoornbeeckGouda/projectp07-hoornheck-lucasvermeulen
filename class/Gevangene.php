@@ -54,33 +54,34 @@ class gevangene {
             return $select;
     }
 
-    public function setGevangene($cell,$medewerkersid, $burgerservicenummer, $voornaam, $tussenvoegsel, $achternaam, $postcode, $woonplaats, $straatnaam, $huisnummer, $geboorteplaats, $telefoon, $email,  $geboortedatum, $foto){
-        $foto = file_get_contents($foto['tmp_name']);
-        
-        $qry_setGevangene = "INSERT INTO gevangene (cell,medewerkersid, voornaam, tussenvoegsel, achternaam, postcode, straatnaam, woonplaats, geboorteplaats, huisnummer, burgerservicenummer, geboortedatum, telefoon, email, foto)
-                                            VALUES (:cell,:medewerkersid, :voornaam, :tussenvoegsel, :achternaam, :postcode, :straatnaam, :woonplaats, :geboorteplaats, :huisnummer, :burgerservicenummer, :geboortedatum, :telefoon, :email, :foto);";
+    public function setGevangene($cell,$medewerkersid, $burgerservicenummer, $voornaam, $tussenvoegsel, $achternaam, $postcode, $woonplaats, $straatnaam, $huisnummer, $geboorteplaats, $telefoon, $email,  $geboortedatum){
+
+            $qry_setGevangene = "INSERT INTO gevangene (cell,medewerkersid, voornaam, tussenvoegsel, achternaam, postcode, straatnaam, woonplaats, geboorteplaats, huisnummer, burgerservicenummer, geboortedatum, telefoon, email)
+            VALUES (:cell,:medewerkersid, :voornaam, :tussenvoegsel, :achternaam, :postcode, :straatnaam, :woonplaats, :geboorteplaats, :huisnummer, :burgerservicenummer, :geboortedatum, :telefoon, :email);";
         $setGevangene=$this->dbconn->prepare($qry_setGevangene);
         $setGevangene->execute([
-            ':cell' => $cell,
-            ':medewerkersid' => $medewerkersid,
-            ':voornaam' => $voornaam,
-            ':tussenvoegsel' => $tussenvoegsel,
-            ':achternaam' => $achternaam,
-            ':postcode' => $postcode,
-            ':woonplaats' => $woonplaats,
-            ':straatnaam' => $straatnaam,
-            ':huisnummer' => $huisnummer,
-            ':burgerservicenummer' => $burgerservicenummer,
-            ':geboorteplaats' => $geboorteplaats,
-            ':telefoon' => $telefoon,
-            ':email' => $email,
-            ':geboortedatum' => $geboortedatum,
-            ':foto' => $foto
+        ':cell' => $cell,
+        ':medewerkersid' => $medewerkersid,
+        ':voornaam' => $voornaam,
+        ':tussenvoegsel' => $tussenvoegsel,
+        ':achternaam' => $achternaam,
+        ':postcode' => $postcode,
+        ':woonplaats' => $woonplaats,
+        ':straatnaam' => $straatnaam,
+        ':huisnummer' => $huisnummer,
+        ':burgerservicenummer' => $burgerservicenummer,
+        ':geboorteplaats' => $geboorteplaats,
+        ':telefoon' => $telefoon,
+        ':email' => $email,
+        ':geboortedatum' => $geboortedatum
         ]);
+
     }
 
 
     public function update($id, $burgerservicenummer, $voornaam, $tussenvoegsel, $achternaam, $postcode, $woonplaats, $straatnaam, $geboorteplaats, $telefoon, $email, $huisnummer, $geboortedatum){
+   
+
         $qry_gevangene = "UPDATE 
                     gevangene
                     SET 
@@ -115,6 +116,20 @@ class gevangene {
             ':id' => $id
         ]);
     }
+    public function updateFoto($id, $foto){
+        $foto = file_get_contents($foto['tmp_name']);
+        $qry_gevangenecell = "UPDATE 
+                    gevangene
+                    SET 
+                        foto = :foto
+                        WHERE id = :id";
+        $updateGevangenecell=$this->dbconn->prepare($qry_gevangenecell);
+        $updateGevangenecell->execute([
+            ':foto' => $foto,
+            ':id' => $id
+        ]);
+    }
+
     public function updateCell($id, $cell){
         
         $qry_gevangenecell = "UPDATE 

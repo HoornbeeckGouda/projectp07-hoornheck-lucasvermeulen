@@ -22,25 +22,27 @@ class Zaak {
         ]);
         return $select;} 
 
-        public function updatezaak($id, $reden){
+        public function updatezaak($id, $opmerkingen){
             $qry_zaak = "UPDATE 
                         zaak
                         SET 
-                            reden = :reden
+                        opmerkingen = :opmerkingen
                             WHERE id = :id";
             $zaak=$this->dbconn->prepare($qry_zaak);
             $zaak->execute([
-                ':reden' => $reden,
+                ':opmerkingen' => $opmerkingen,
                 ':id' => $id
             ]);
         }
-        public function setzaak($gevangeneId, $reden){
-            $qry_setzaak = "INSERT INTO zaak (gevangeneId,reden)
-                                                VALUES (:gevangeneId,:reden);";
+        public function setzaak($gevangeneId, $reden, $opmerkingen, $StrafLengte){
+            $qry_setzaak = "INSERT INTO zaak (gevangeneId,reden, opmerkingen, StrafLengte)
+                                                VALUES (:gevangeneId,:reden, :opmerkingen, :StrafLengte);";
             $setzaak=$this->dbconn->prepare($qry_setzaak);
             $setzaak->execute([
                 ':gevangeneId' => $gevangeneId,
-                ':reden' => $reden
+                ':reden' => $reden,
+                ':opmerkingen' => $opmerkingen,
+                ':StrafLengte' => $StrafLengte
             ]);
         }
 

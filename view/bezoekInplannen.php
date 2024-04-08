@@ -2,13 +2,30 @@
 <?php
 include('./header.php');
 include('../class/bezoek.php');
+include ('../class/mailer.php');
 
+    
 $bezoek = new bezoek($dbconn);
 if(isset($_POST['gevangeneNaam'])){
     $gevangeneNaam = $_POST['gevangeneNaam'];
     $reden =  $_POST['reden'];
     $bezoekTijd =  $_POST['bezoekDatum'] . ' '. $_POST['bezoekTijd'];
     $setBezoek = $bezoek->insertBezoek($gevangeneNaam, $reden, $bezoekTijd);
+
+
+    $klant = 'Klant B';
+    $email = $_POST['email'];
+    $TempToken = bin2hex(random_bytes(15));
+    $melding='Testmail';
+    $onderwerp = "Bezoek Ingepland";
+    $bericht = "u heeft een bezoek geplaned:
+    Bij:$gevangeneNaam,
+    op: $bezoekTijd, reden: $reden";
+    //mailen...
+    mailen($email, $klant, $onderwerp, $bericht );
+
+    header('Location: '.'./klantenPortaal.php');
+    die();
 }
 
 ?>
@@ -26,6 +43,10 @@ if(isset($_POST['gevangeneNaam'])){
         <form class="bezoek" method="POST" id="bezoekForm">
             <div class="bezoekinputContainer">
                 <div class="bezoekinputs" style="width: 100%; ">
+                    <div class="labels">
+                        <label>Jouw Email:</label>
+                        <input type="text" value="" name="email"> </input>  
+                    </div>
                     <div class="labels">
                         <label>Gevangene naam:</label>
                         <input type="text" value="" name="gevangeneNaam"> </input>  
@@ -86,7 +107,7 @@ include('./footer.php');
     background-color: #cd503c90;
 }
 .bezoekcontainer{
-    height: 300px;
+    height: 400px;
     /* width: 100%; */
     /* position: absolute; */
     top: 370px;

@@ -21,7 +21,8 @@ CREATE TABLE gebruiker (
 INSERT INTO `gebruiker` (`email`, `wachtwoord`, `rolId`, `voornaam`, `tussenvoegsel`, `achternaam`, `telefoon`, `sleutelnummer`) VALUES
 ('lucas.a.vermeulen@gmail.com', '$2y$10$BatUL/nfpcPhzeFE3q5AmeEl1YuENJKt9XkMurxHLiKtUOeiFpYdG', '1', 'lucas', '', 'vermeulen', '0613949094', '4'),
 ('peter.peterson@gmail.com', '$2y$10$BatUL/nfpcPhzeFE3q5AmeEl1YuENJKt9XkMurxHLiKtUOeiFpYdG', '2', 'peter', '', 'peterson', '0613949094', ''),
-('eva.omega@gmail.com', '$2y$10$BatUL/nfpcPhzeFE3q5AmeEl1YuENJKt9XkMurxHLiKtUOeiFpYdG', '3', 'eva', '', 'omega', '0613949094', '');
+('eva.omega@gmail.com', '$2y$10$BatUL/nfpcPhzeFE3q5AmeEl1YuENJKt9XkMurxHLiKtUOeiFpYdG', '3', 'eva', '', 'omega', '0613949094', ''),
+('admin', '$2y$10$BatUL/nfpcPhzeFE3q5AmeEl1YuENJKt9XkMurxHLiKtUOeiFpYdG', '4', 'admin', '', '', '', '');
 
 DROP TABLE IF EXISTS rol;
 CREATE TABLE rol (
@@ -32,7 +33,8 @@ CREATE TABLE rol (
 INSERT INTO `rol` (`naam`) VALUES
 ('bewaker'),
 ('portier'),
-('maatschappelijkewerker');
+('maatschappelijkewerker'),
+('admin');
 
 DROP TABLE IF EXISTS gevangenis;
 CREATE TABLE gevangenis (
@@ -109,8 +111,9 @@ CREATE TABLE zaak (
   id int(11) NOT NULL AUTO_INCREMENT,
   gevangeneId int(11) NOT NULL,
   reden varchar(255) NOT NULL,
+  opmerkingen varchar(255) NOT NULL,
   datum_arrestatie timestamp NOT NULL,
-  datum_vrijkomst timestamp NULL,
+  StrafLengte int(11),
   start_datum timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );

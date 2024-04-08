@@ -2,21 +2,27 @@
 include('../view/header.php');
 include('./components/header.php');
 include('../class/Gevangene.php');
-include('../class/Logboek.php');
 include('../class/Gevangenis.php');
+include('../class/Gebruiker.php');
 
 $gevangene = new gevangene($dbconn);
+$gebruiker = new gebruiker($dbconn);
 
 if(isset($_POST['burgerservicenummer'])){
-
-    $foto = $_FILES['foto'];
-    $gevangene = $gevangene->setGevangene($_POST['cell'],
+    
+    $gevangeneSet = $gevangene->setGevangene($_POST['cell'],
     $_POST['mederwerkersId'],
     $_POST['burgerservicenummer'],$_POST['voornaam'],
     $_POST['tussenvoegsel'],$_POST['achternaam'],$_POST['postcode'],$_POST['woonplaats'],$_POST['straatnaam'],$_POST['huisnummer']
-    ,$_POST['geboorteplaats'],$_POST['telefoon'],$_POST['email'],$_POST['geboortedatum'], $foto);
+    ,$_POST['geboorteplaats'],$_POST['telefoon'],$_POST['email'],$_POST['geboortedatum']);
 
     $last_id = $dbconn->lastInsertId();
+
+    if($_FILES['foto']['name']){
+        $foto = $_FILES['foto'];
+        $gevangene = $gevangene->updateFoto($last_id,$foto);
+    }
+    include('../class/Logboek.php');
 
     $reden = 'Niewe Gevangene';
     $medewerkerId = $_SESSION['gebruiker']['id'];
@@ -27,8 +33,8 @@ if(isset($_POST['burgerservicenummer'])){
     $Logboek = new Logboek($dbconn);
     $setLogboek = $Logboek->setInfo($reden, $medewerkerId, $gevangeneId, $actie, $tijd, $opmerkingen);
 
-    header('Location: '.'./overzicht.php');
-    die();
+        header('Location: '.'./overzicht.php');
+        die();
 }
 
 $gevangenis = new Gevangenis($dbconn);
@@ -37,6 +43,12 @@ $gevangenis = $gevangenis->fetch();
 
 $Allgevangene = $gevangene->getInfo(null);
 $Allgevangene->setFetchMode(PDO::FETCH_BOTH);
+
+
+
+$gebruikerall = $gebruiker->getAll();
+$gebruikerall->setFetchMode(PDO::FETCH_BOTH);
+
 $numbers = array();
 
 for ($i = 1; $i <= $gevangenis['aantal']; $i++) {
@@ -49,6 +61,7 @@ foreach($Allgevangene as $row){
     }
 }
 
+
 ?>
  <a  style="margin-left: 10px;
     margin-top: 10px;
@@ -56,7 +69,7 @@ foreach($Allgevangene as $row){
     position: relative;" href="./overzicht.php"><i class="material-icons" style="font-size:20px; ">arrow_back</i></a>
 <div id="formContainer">
     <div id="InnerContainer">
-    <div id="FormLabel">Edit :</div>
+    <div id="FormLabel">Toevoegen:</div>
 
         <form class="hekkensluiterForm"  method="POST" enctype="multipart/form-data"> 
             
@@ -67,7 +80,20 @@ foreach($Allgevangene as $row){
                 <tr>
                     <tr>
                         <td>mederwerkersId:</td>
-                        <td><input type='text' name='mederwerkersId' value=''></td>
+                        <td>
+                        <select name='mederwerkersId' id='mederwerkersId' style='width: 100%;'>
+                        ";
+                        
+                        foreach($gebruikerall as $row){
+
+                            if($row['rolName'] == 'maatschappelijkewerker'){
+                                echo "<option value='".$row['rol']."'>".$row['voornaam']."</option>";
+                            }
+                        };
+                        
+                        echo "
+                        </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>cell:</td>
@@ -83,7 +109,7 @@ foreach($Allgevangene as $row){
                         </td>
                     </tr>
                     <tr>
-                        <td>Burgerservicenummer:</td>
+                        <td>BSN:</td>
                         <td><input type='text' name='burgerservicenummer' value=''></td>
                     </tr>
                     <tr>

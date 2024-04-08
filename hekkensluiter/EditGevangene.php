@@ -9,12 +9,18 @@ $gevangeneFromID = $gevangene->GetFromId($_GET['id']);
 $gevangeneFromID->setFetchMode(PDO::FETCH_BOTH);
 
 if(isset($_POST['id'])){
-    $gevangene = $gevangene->update(
+    
+    $gevangeneUpdate = $gevangene->update(
         $_POST['id'],$_POST['burgerservicenummer'],$_POST['voornaam'],
         $_POST['tussenvoegsel'],$_POST['achternaam'],$_POST['postcode'],$_POST['woonplaats'],$_POST['straatnaam']
         ,$_POST['geboorteplaats'],$_POST['telefoon'],$_POST['email'],$_POST['huisnummer'],$_POST['geboortedatum']);
 
 
+
+    if($_FILES['foto']['name']){
+        $foto = $_FILES['foto'];
+        $gevangene = $gevangene->updateFoto($_POST['id'],$foto);
+    }
     $reden = 'verkeerd ingevult';
     $medewerkerId = $_SESSION['gebruiker']['id'];
     $gevangeneId = $_POST['id'];
@@ -36,9 +42,9 @@ if(isset($_POST['id'])){
 
 <div id="formContainer">
     <div id="InnerContainer">
-    <div id="FormLabel">Edit :</div>
+    <div id="FormLabel">Edit:</div>
 
-        <form class="hekkensluiterForm"  method="POST" >
+        <form class="hekkensluiterForm"  method="POST" enctype="multipart/form-data" >
             
                <table>
                 <?php
@@ -47,11 +53,14 @@ if(isset($_POST['id'])){
                 
                 echo"
                 <tr>
-                    <td>Gevangene id:</td>
-                        <td><input type='text' name='id' value='".$row['id']."'></td>
-                    </tr>
+                <tr>
+                <td>gevangene ID:</td>
+                
+                    <td><label name='id'>".$row['id']."</label></td>
+                    <td><input type='hidden'  readonly name='id' value='".$row['id']."'></td>
+                </tr>
                     <tr>
-                        <td>Burgerservicenummer:</td>
+                        <td>BSN:</td>
                         <td><input type='text' name='burgerservicenummer' value='".$row['burgerservicenummer']."'></td>
                     </tr>
                     <tr>
@@ -97,6 +106,10 @@ if(isset($_POST['id'])){
                     <tr>
                         <td>Email:</td>
                         <td><input type='text' name='email' value='".$row['email']."'></td>
+                    </tr>
+                    <tr>
+                        <td>Foto:</td>
+                        <td><input type='file' name='foto' value=''></td>
                     </tr>
                 ";}
                 ?>

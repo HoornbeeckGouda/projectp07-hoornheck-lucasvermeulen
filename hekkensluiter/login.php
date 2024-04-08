@@ -19,7 +19,8 @@ if(isset($_POST['email'])){
             header('Location: '.'./aanmelding.php');
             die();
         }else{
-            header('Location: '.'./overzicht.php');
+            header('Location: '.'./Recaptcha.php');
+            // header('Location: '.'./overzicht.php');
             die();
         }
     }
@@ -35,9 +36,9 @@ if(isset($_POST['email'])){
 
         <form class="LoginForm" method="POST" >
             
-                <input type="text" id="email" name="email"  placeholder="email" >
+                <input type="text" id="email" name="email"  placeholder="Email" style="text-indent: 10px;">
 
-                <input type="PASSWORD" id="PASSWORD" name="password" placeholder="Wachtwoord" >
+                <input type="PASSWORD" id="PASSWORD" name="password" placeholder="Wachtwoord" style="text-indent: 10px;">
 
                 <input type="submit" value="Submit" id="FormSubmit" style="height: 60px;">       
         </form> 

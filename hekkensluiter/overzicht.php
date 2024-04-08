@@ -25,13 +25,15 @@ $gevangene->setFetchMode(PDO::FETCH_BOTH);
             <?php
             if($_SESSION['gebruiker']['rol'] != 'maatschappelijkewerker'){ 
                 echo '
-                <button id="toevoegenGevange"> <a  href="./toevoegenGevangene.php"><i class="material-icons" style="font-size:20px;">add</i>Toevoegen</a></button>
+                <button id="toevoegenGevange" style="margin-right:15px;" > <a  href="./Logboek.php"style="color:black; "><i class="material-icons" style="font-size:20px; color:black;">book</i>LogBoek</a></button>
+
+                <button id="toevoegenGevange"> <a  href="./toevoegenGevangene.php" style="color:black; "><i class="material-icons" style="font-size:20px;color:black; ">add</i>Toevoegen</a></button>
                 ';
             }
 ?>
         <form class="GevangeneForm" method="POST" id="" >
             <div id='searchGevangene'>
-                <input type="text" id="searchinput" name="search"  placeholder="search" value="<?php if(isset($_POST['search'])){
+                <input type="text" id="searchinput" name="search" style="text-indent: 10px;"  placeholder="search" value="<?php if(isset($_POST['search'])){
                     echo $_POST['search']; }?>">
             </div>
             <div id='FormSubmit' style=" justify-content: end;">
@@ -73,13 +75,13 @@ $gevangene->setFetchMode(PDO::FETCH_BOTH);
                             '<td onclick="location.href=`./GevangeneInfo.php?id='.$row['id'].'`">' . $row['huisnummer'] . '</td>
                             '; 
 
-                            if($_SESSION['gebruiker']['rol'] == 'bewaker'){ 
+                            if($_SESSION['gebruiker']['rol'] == 'bewaker' OR $_SESSION['gebruiker']['rol'] == 'admin'){ 
                                 echo
                                 '<td> <a href="./editGevangene.php?id='.$row['id'].'">
                                 <i class="material-icons" style="font-size:20px; padding:0px;width:100%; height: 100%; color: black;">edit</i>
                                 </a> </td>';
                             }  
-                            if($_SESSION['gebruiker']['rol'] == 'portier'){ 
+                            if($_SESSION['gebruiker']['rol'] == 'portier' OR $_SESSION['gebruiker']['rol'] == 'admin'){ 
                                 echo 
                                 '<td > <a href="./verplaatsGevangene.php?id='.$row['id'].'">
                                 <i class="material-icons" style="font-size:20px;padding:0px; width:100%; height: 100%; color: black;">trending_flat

@@ -10,12 +10,13 @@ class Logboek {
             $qry_Select = "SELECT 
                 *
                 FROM logboek
+                INNER JOIN gevangene ON logboek.gevangeneId = gevangene.id 
                 WHERE 
-                id LIKE '%$searchFor%' OR 
-                medewerkersId LIKE '%$searchFor%' OR 
-                gevangeneId LIKE '%$searchFor%' OR
-                actie LIKE '%$searchFor%' OR
-                tijd LIKE '%$searchFor%'";
+                logboek.id LIKE '%$searchFor%' OR 
+                logboek.medewerkerId LIKE '%$searchFor%' OR 
+                logboek.gevangeneId LIKE '%$searchFor%' OR
+                logboek.actie LIKE '%$searchFor%' OR
+                logboek.tijd LIKE '%$searchFor%'";
             $select=$this->dbconn->prepare($qry_Select);          
             $select->execute();
             return $select;

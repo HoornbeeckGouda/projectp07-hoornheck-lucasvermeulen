@@ -24,11 +24,14 @@ $zaakFromId->setFetchMode(PDO::FETCH_BOTH);
 <div class="infoContainter">
     
     <div class="info">
-        <table class="infoTabel">
+        
         <?php
         foreach($gevangeneFromID as $row){
+            
     
             echo "
+
+            <table class='infoTabel'>
             <tr>
             <td>Gevangene id:</td>
             <td><label name='id'>".$row['id']."</label></td>
@@ -82,20 +85,16 @@ $zaakFromId->setFetchMode(PDO::FETCH_BOTH);
                 <td>Email:</td>
                 <td><label name='email'>".$row['email']."</label></td>
             </tr>
+            </table>
+
             ";
             if(isset($row['foto'])){
-                echo '
-                <tr>
-                    <td>foto:</td>
-                    <td>
-                    
-                    
-                    <img style="width:150px;" src="data:image/jpeg;base64,'.base64_encode($row['foto']).'"/>
-                </tr>';
-            }
+                echo '<img style="width:150px; right:0px" src="data:image/jpeg;base64,'.base64_encode($row['foto']).'"/>';
+            };
+           
         }
         ?>
-         </table>
+         
     </div>
     <div class="zaak">
         <?php
@@ -110,6 +109,7 @@ $zaakFromId->setFetchMode(PDO::FETCH_BOTH);
                 <tr>
                     <th>zaakId:</th>
                     <th>gevangene:</th>
+                    <th>StrafLengte</th>
                     <th>reden:</th>
                 </tr>
             
@@ -119,9 +119,11 @@ $zaakFromId->setFetchMode(PDO::FETCH_BOTH);
                 echo '
                 
                 <tr onclick="location.href=`./zaakInfo.php?id='.$row['id'].'`">
-                    <td><label name="id">'.$row['id'].'</label></td>
-                    <td><label name="gevangeneId">'.$row['gevangeneId'].'</label></td>
-                    <td style="width: 25px; white-space:nowrap;"><label>'.substr($row['reden'], 0, 60).'</label></td>
+                    <td style="width: 75px;"><label name="id">'.$row['id'].'</label></td>
+                    <td style="width: 120px;"><label name="gevangeneId">'.$row['gevangeneId'].'</label></td>
+                    <td style="width: 120px;"><label name="straflengte">'.$row['StrafLengte'].' maanden</label></td>
+
+                    <td style=" white-space:nowrap;"><label>'.substr($row['reden'], 0, 60).'</label></td>
                 </tr>   
                 
                 ';

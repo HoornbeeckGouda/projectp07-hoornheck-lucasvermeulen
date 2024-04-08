@@ -12,8 +12,8 @@ $gevangeneFromID->setFetchMode(PDO::FETCH_BOTH);
 
 
 $zaak = new Zaak($dbconn);
-if(isset($_POST['reden'])){
-    $updateZaak = $zaak->updatezaak($_GET['id'], $_POST['reden']);
+if(isset($_POST['opmerkingen'])){
+    $updateZaak = $zaak->updatezaak($_GET['id'], $_POST['opmerkingen']);
 echo $_POST['gevangeneId'];
     header('Location: '.'./gevangeneInfo.php?id='.$_POST['gevangeneId'].'');
     die();
@@ -45,10 +45,10 @@ $zaakFromId->setFetchMode(PDO::FETCH_BOTH);
                     <td><input name="gevangeneId" readonly value="'.$row['gevangeneId'].'"></input></td>
                 </tr>
                 <tr>
-                    <td>reden</td>
+                    <td>opmerkingen</td>
                 </tr>   
                 <tr>
-                    <td colspan="2"><textarea id="reden" name="reden" rows="8" style="width: 100%;">'.$row['reden'].'</textarea></td>
+                    <td colspan="2"><textarea id="reden" name="opmerkingen" rows="8" style="width: 100%;">'.$row['opmerkingen'].'</textarea></td>
                 </tr>   
                 
                 ';
