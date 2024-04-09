@@ -53,7 +53,7 @@ foreach($Allgevangene as $row){
     position: relative;" href="./overzicht.php"><i class="material-icons" style="font-size:20px; ">arrow_back</i></a>
 <div id="formContainer">
     <div id="InnerContainer">
-    <div id="FormLabel">Edit :</div>
+    <div id="FormLabel">Verplaatsen:</div>
 
         <form class="hekkensluiterForm"  method="POST" >
             
@@ -66,22 +66,22 @@ foreach($Allgevangene as $row){
                 <tr>
                 
                     <td>medewerker id:</td>
-                        <td><input type='text' name='mederwerkerid' readonly value='".$_SESSION['gebruiker']['id']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='mederwerkerid' readonly value='".$_SESSION['gebruiker']['id']."'></td>
                     </tr>
                     <td>Gevangene id:</td>
-                        <td><input type='text' name='gevangeneid' readonly value='".$row['id']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='gevangeneid' readonly value='".$row['id']."'></td>
                     </tr>
                     <td>van cell:</td>
-                        <td><input type='text' name='vanCell' readonly value='".$row['cell']."'></td>
+                        <td><input  style='text-indent:5px'  type='text' name='vanCell' readonly value='".$row['cell']."'></td>
                     </tr>
                     <td>naar cell:</td>
                         
                         <td>
-                        <select name='naarCell' id='cell' style='width: 100%;'>
+                        <select  name='naarCell' id='cell' style='width: 100%;'>
                         ";
                         foreach($numbers as $num) {
 
-                            echo "<option value='".$num."'>".$num."</option>";
+                            echo "<option  value='".$num."'>".$num."</option>";
                         }; 
                         echo '
                         </select>
@@ -91,7 +91,7 @@ foreach($Allgevangene as $row){
                         <td>datum:
                         </td>
                         <td>
-                            <input type="date"  name="date" value="'. date("Y-m-d") .'">
+                            <input type="date" style="text-indent:5px"   name="date" value="'. date("Y-m-d") .'">
                       </td>
                     </tr>
                     <tr>
@@ -99,7 +99,7 @@ foreach($Allgevangene as $row){
                             tijd:
                         </td>
                         <td>
-                                <input id="appt-time" type="time" name="time" value="'. date("h:i") .'" />
+                                <input id="appt-time"  style="text-indent:5px" type="time" name="time" value="'. date("h:i") .'" />
                         </td>
                     </tr>
                     <tr>
@@ -107,7 +107,7 @@ foreach($Allgevangene as $row){
                             opmerkingen:
                         </td>
                         <td>
-                            <textarea id="opmerkingen" name="opmerkingen" rows="8" style="width: 100%;" ></textarea>
+                            <textarea id="opmerkingen"  name="opmerkingen" rows="8" style="width: 100%;" ></textarea>
                         </td>
                     </tr>
                     

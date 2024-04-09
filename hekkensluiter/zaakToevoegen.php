@@ -33,6 +33,11 @@ if(isset($_POST['reden'])){
 
 
 ?>
+
+ <a  style="margin-left: 10px;
+    margin-top: 10px;
+    top: 10px;
+    position: relative;" href="./gevangeneInfo.php?id=<?php echo $_GET['id'] ;?>"><i class="material-icons" style="font-size:20px; ">arrow_back</i></a>
 <div id="formContainer">
 
     <div class="zaak">

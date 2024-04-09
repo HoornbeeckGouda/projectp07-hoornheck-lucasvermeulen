@@ -44,7 +44,7 @@ if(isset($_POST['id'])){
     <div id="InnerContainer">
     <div id="FormLabel">Edit:</div>
 
-        <form class="hekkensluiterForm"  method="POST" enctype="multipart/form-data" >
+        <form class="hekkensluiterForm"   method="POST" enctype="multipart/form-data" >
             
                <table>
                 <?php
@@ -57,59 +57,59 @@ if(isset($_POST['id'])){
                 <td>gevangene ID:</td>
                 
                     <td><label name='id'>".$row['id']."</label></td>
-                    <td><input type='hidden'  readonly name='id' value='".$row['id']."'></td>
+                    <td style='text-indent:10px'><input type='hidden'  readonly name='id' value='".$row['id']."'></td>
                 </tr>
                     <tr>
                         <td>BSN:</td>
-                        <td><input type='text' name='burgerservicenummer' value='".$row['burgerservicenummer']."'></td>
+                        <td ><input style='text-indent:5px' type='text' name='burgerservicenummer' value='".$row['burgerservicenummer']."'></td>
                     </tr>
                     <tr>
                         <td>Voornaam:</td>
-                        <td><input type='text' name='voornaam' value='".$row['voornaam']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='voornaam' value='".$row['voornaam']."'></td>
                     </tr>
                     <tr>
                         <td>Tussenvoegsel:</td>
-                        <td><input type='text' name='tussenvoegsel' value='".$row['tussenvoegsel']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='tussenvoegsel' value='".$row['tussenvoegsel']."'></td>
                     </tr>
                     <tr>
                         <td>Achternaam:</td>
-                        <td><input type='text' name='achternaam' value='".$row['achternaam']."'></td>
+                        <td><input  style='text-indent:5px'  type='text' name='achternaam' value='".$row['achternaam']."'></td>
                     </tr>
                     <tr>
                         <td>Postcode:</td>
-                        <td><input type='text' name='postcode' value='".$row['postcode']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='postcode' value='".$row['postcode']."'></td>
                     </tr>
                     <tr>
                         <td>Straatnaam:</td>
-                        <td><input type='text' name='straatnaam' value='".$row['straatnaam']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='straatnaam' value='".$row['straatnaam']."'></td>
                     </tr>
                     <tr>
                         <td>Huisnummer:</td>
-                        <td><input type='text' name='huisnummer' value='".$row['huisnummer']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='huisnummer' value='".$row['huisnummer']."'></td>
                     </tr>
                     <tr>
                         <td>Woonplaats:</td>
-                        <td><input type='text' name='woonplaats' value='".$row['woonplaats']."'></td>
+                        <td><input  style='text-indent:5px'  type='text' name='woonplaats' value='".$row['woonplaats']."'></td>
                     </tr>
                     <tr>
                         <td>Geboortedatum:</td>
-                        <td><input type='date' name='geboortedatum' value='".$row['geboortedatum']."'></td>
+                        <td><input style='text-indent:5px'  type='date' name='geboortedatum' value='".$row['geboortedatum']."'></td>
                     </tr>
                     <tr>
                         <td>Geboorteplaats:</td>
-                        <td><input type='text' name='geboorteplaats' value='".$row['geboorteplaats']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='geboorteplaats' value='".$row['geboorteplaats']."'></td>
                     </tr>
                     <tr>
                         <td>Telefoon:</td>
-                        <td><input type='text' name='telefoon' value='".$row['telefoon']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='telefoon' value='".$row['telefoon']."'></td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td><input type='text' name='email' value='".$row['email']."'></td>
+                        <td><input style='text-indent:5px'  type='text' name='email' value='".$row['email']."'></td>
                     </tr>
                     <tr>
                         <td>Foto:</td>
-                        <td><input type='file' name='foto' value=''></td>
+                        <td><input  type='file' name='foto' value=''></td>
                     </tr>
                 ";}
                 ?>

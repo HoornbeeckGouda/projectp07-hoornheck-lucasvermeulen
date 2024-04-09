@@ -20,19 +20,19 @@ include('./header.php');
     <div class="card">
         <div onclick="location.href='../hekkensluiter/login.php?page=aanmelding'" id="aanmelding" class="innerCard">
             <i class="material-icons icons" style="font-size:120px;">event_note</i>
-            aanmelden
+            Aanmelden
         </div>
     </div>
     <div onclick="location.href='../hekkensluiter/login.php'" class="card">
         <div id="hekkensluiter" class="innerCard">
             <i class="material-icons icons" style="font-size:120px;">apartment</i>
-            hekkensluiter
+            Hekkensluiter
         </div>
     </div>
     <div onclick="location.href='../hekkensluiter/login.php'" class="card">
         <div id="hulp" class="innerCard">
             <i class="material-icons icons" style="font-size:120px;">handshake</i>
-            prakitsche hulp
+            Prakitsche hulp
         </div>
     </div>
 </div>

@@ -25,15 +25,15 @@ $gevangene->setFetchMode(PDO::FETCH_BOTH);
             <?php
             if($_SESSION['gebruiker']['rol'] != 'maatschappelijkewerker'){ 
                 echo '
-                <button id="toevoegenGevange" style="margin-right:15px;" > <a  href="./Logboek.php"style="color:black; "><i class="material-icons" style="font-size:20px; color:black;">book</i>LogBoek</a></button>
+                <button id="toevoegenGevange" style="margin-right:15px; border-radius:10px;" > <a  href="./Logboek.php"style="color:black; "><i class="material-icons" style="font-size:20px; color:black;">book</i>Logboek</a></button>
 
-                <button id="toevoegenGevange"> <a  href="./toevoegenGevangene.php" style="color:black; "><i class="material-icons" style="font-size:20px;color:black; ">add</i>Toevoegen</a></button>
+                <button id="toevoegenGevange" style=" border-radius:10px;"> <a  href="./toevoegenGevangene.php" style="color:black; "><i class="material-icons" style="font-size:20px;color:black; ">add</i>Toevoegen</a></button>
                 ';
             }
 ?>
         <form class="GevangeneForm" method="POST" id="" >
             <div id='searchGevangene'>
-                <input type="text" id="searchinput" name="search" style="text-indent: 10px;"  placeholder="search" value="<?php if(isset($_POST['search'])){
+                <input type="text" id="searchinput" name="search" style="text-indent: 10px; font-size:16px;"  placeholder="Zoeken"  value="<?php if(isset($_POST['search'])){
                     echo $_POST['search']; }?>">
             </div>
             <div id='FormSubmit' style=" justify-content: end;">
@@ -46,8 +46,8 @@ $gevangene->setFetchMode(PDO::FETCH_BOTH);
             <thead>
 
                 <tr id="gevangeneHeader">
-                    <th>id</th>
-                    <th>cell</th>
+                    <th>Id</th>
+                    <th>Cell</th>
                     <th>Voornaam</th>
                     <th>Tussenvoegsel</th>
                     <th>Achternaam</th>

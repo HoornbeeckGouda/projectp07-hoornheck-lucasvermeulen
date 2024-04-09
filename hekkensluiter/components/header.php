@@ -5,7 +5,7 @@
    <img src="../img/WhiteLogo.png"  width="178" height="55" >
 </div>
    <div id="account">
-      <div style="font-size:20px; color: white;">
+      <div style="font-size:25px; color: white;">
          <?php
             if(isset($_SESSION["gebruiker"]['voornaam'])){
                echo $_SESSION["gebruiker"]['voornaam'];

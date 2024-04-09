@@ -100,7 +100,7 @@ $zaakFromId->setFetchMode(PDO::FETCH_BOTH);
         <?php
         if($_SESSION['gebruiker']['rol'] != 'maatschappelijkewerker'){ 
             echo '
-            <button id="toevoegenGevange"> <a  href="./zaakToevoegen.php?id='.$_GET['id'].'"><i class="material-icons" style="font-size:20px;">add</i>Toevoegen</a></button>
+            <button id="toevoegenGevange"> <a style="color:black;" href="./zaakToevoegen.php?id='.$_GET['id'].'"><i class="material-icons" style="font-size:20px;">add</i>Toevoegen</a></button>
         ';
         }
         

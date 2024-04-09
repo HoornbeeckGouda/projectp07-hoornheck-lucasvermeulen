@@ -40,7 +40,7 @@ if(isset($_POST['email'])){
 
                 <input type="PASSWORD" id="PASSWORD" name="password" placeholder="Wachtwoord" style="text-indent: 10px;">
 
-                <input type="submit" value="Submit" id="FormSubmit" style="height: 60px;">       
+                <input type="submit" value="Versturen" id="FormSubmit" style="height: 60px;">       
         </form> 
     </div>
 </div>
